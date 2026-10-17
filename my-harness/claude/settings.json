@@ -1,0 +1,38 @@
+{
+  // Tes permissions...
+
+  "permissions": {
+    "deny": [
+      "Bash(rm *)",
+      "Bash(rmdir *)",
+      "Bash(unlink *)",
+      "Bash(del *)",
+      "Bash(rd *)",
+      "Bash(git rm *)",
+      "Bash(git clean *)",
+      "Bash(find * -delete*)",
+      "Bash(Remove-Item *)"
+    ],
+    "ask": [
+    "Bash(npm install)",
+    "Bash(npm install *)",
+    "Bash(npm i)",
+    "Bash(npm i *)",
+    "Bash(npm add *)",
+    "Bash(npm ci)"
+  ]
+  }
+
+
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          { "type": "command", "command": "node", "args": ["${CLAUDE_PROJECT_DIR}/.claude/hooks/confirm-push-main.js"] }
+          { "type": "command", "command": "node", "args": ["${CLAUDE_PROJECT_DIR}/.claude/hooks/block-delete.js"] }
+        ]
+      }
+    ]
+  }
+}
